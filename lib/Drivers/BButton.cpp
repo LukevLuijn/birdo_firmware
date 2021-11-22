@@ -4,11 +4,6 @@
 
 namespace Drivers
 {
-    namespace
-    {
-        const char *TAG = "BUTTON";
-    }
-
     BButton::BButton(uint8_t pin,
                      void(pressedCallback)(void),
                      void(pressLongCallback)(void),
