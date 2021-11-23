@@ -57,6 +57,7 @@ namespace Drivers
         if (m_currentState == PixelState_e::STATE_ON)
         {
             m_pixels.setBrightness(m_maxBrightness);
+            WriteColor();
         }
         else if (m_currentState == PixelState_e::STATE_BREATHE)
         {
@@ -101,6 +102,7 @@ namespace Drivers
 
         m_breatheOut = true;
         m_pixels.clear();
+        m_pixels.setBrightness(0);
     }
     void BDPixel::Breathe()
     {
@@ -125,6 +127,10 @@ namespace Drivers
         {
             TurnOn(false);
         }
+    }
+    Color BDPixel::GetColor() const 
+    {
+        return m_currentColor;
     }
     void BDPixel::SetBreatheTime(uint32_t time)
     {

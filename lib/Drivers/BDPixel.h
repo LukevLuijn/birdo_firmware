@@ -42,6 +42,7 @@ namespace Drivers
         void Breathe();
         void SetColor(const Color &color);
         void SetColor(uint8_t red, uint8_t green, uint8_t blue);
+        Color GetColor() const;
         void SetBreatheTime(uint32_t time);
 
     private:

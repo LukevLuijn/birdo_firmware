@@ -25,6 +25,7 @@ namespace Drivers
     }
     void BDStepper::Start()
     {
+        setCurrentPosition(0);
         uint16_t stepsPerRev = STEPS_PER_REVOLUTION * MULTIPLIERS[static_cast<uint8_t>(m_microsteps)] * m_reduction;
         setMaxSpeed(stepsPerRev);
         setAcceleration(1000);
@@ -49,5 +50,11 @@ namespace Drivers
         enableOutputs();
         m_isEnabled = true;
         moveTo(steps);
+    }
+    void BDStepper::MoveTo(uint32_t position)
+    {
+        enableOutputs();
+        m_isEnabled = true;
+        moveTo(position);
     }
 }

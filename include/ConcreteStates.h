@@ -37,7 +37,11 @@ namespace Application
     class Init : public BaseState
     {
     public:
-        explicit Init(App &app) : BaseState(app), m_timer(0), m_interval(5000) {}
+        explicit Init(App &app) : BaseState(app),
+                                  m_timer(0),
+                                  m_previousMotorSpeed(0),
+                                  m_movementComplete(false)
+                                   {}
         ~Init() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -47,12 +51,15 @@ namespace Application
 
     private:
         uint32_t m_timer;
-        uint32_t m_interval;
+        uint32_t m_previousMotorSpeed;
+        bool m_movementComplete;
     };
     class Idle : public BaseState
     {
     public:
-        explicit Idle(App &app) : BaseState(app), m_timer(0), m_interval(60000) {}
+        explicit Idle(App &app) : BaseState(app),
+                                  m_timer(0),
+                                  m_transitionComplete(false) {}
         ~Idle() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -62,7 +69,7 @@ namespace Application
 
     private:
         uint32_t m_timer;
-        uint32_t m_interval;
+        bool m_transitionComplete;
     };
     class Pressed : public BaseState
     {
@@ -89,7 +96,10 @@ namespace Application
     class CheckPress : public BaseState
     {
     public:
-        explicit CheckPress(App &app) : BaseState(app), m_timer(0), m_interval(400) {}
+        explicit CheckPress(App &app) : BaseState(app),
+                                        m_timer(0)
+        {
+        }
         ~CheckPress() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -99,7 +109,6 @@ namespace Application
 
     private:
         uint32_t m_timer;
-        uint32_t m_interval;
     };
     class Sleep : public BaseState
     {
@@ -115,7 +124,8 @@ namespace Application
     class Message : public BaseState
     {
     public:
-        explicit Message(App &app) : BaseState(app), m_timer(0), m_interval(5000) {}
+        explicit Message(App &app) : BaseState(app),
+                                     m_timer(0) {}
         ~Message() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -125,12 +135,13 @@ namespace Application
 
     private:
         uint32_t m_timer;
-        uint32_t m_interval;
     };
     class WellDone : public BaseState
     {
     public:
-        explicit WellDone(App &app) : BaseState(app), m_timer(0), m_interval(5000) {}
+        explicit WellDone(App &app) : BaseState(app),
+                                      m_timer(0),
+                                      m_goBack(true) {}
         ~WellDone() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -140,7 +151,7 @@ namespace Application
 
     private:
         uint32_t m_timer;
-        uint32_t m_interval;
+        bool m_goBack;
     };
     enum class Events_e : uint8_t
     {

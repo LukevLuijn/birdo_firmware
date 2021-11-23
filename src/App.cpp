@@ -25,22 +25,24 @@ namespace Application
     }
     void App::Start()
     {
-        auto start = std::make_shared<Init>(*this);
-        SetCurrentState(start);
-
         Drivers::BDLDR::Start(LDR_PIN);
 
         stepperBot.Start();
         stepperTop.Start();
 
         pixels.Start();
-        pixels.SetBreatheTime(1000);
-
-        button.Start();
-        button.SetLongPressTime(1000);
+        pixels.SetBreatheTime(BASE_BREATHE_TIME);
+        pixels.SetColor(DEFAULT_COLOR);
 
         led.Start();
-        led.SetBreatheTime(1000);
+        led.SetBreatheTime(BASE_BREATHE_TIME);
+
+        button.Start();
+        button.SetLongPressTime(BASE_LONG_PRESS_TIME);
+        button.SetDoublePressTime(STATE_CHECK_PRESS_TIMER);
+
+        auto start = std::make_shared<Init>(*this);
+        SetCurrentState(start);
     }
     void App::Loop()
     {

@@ -16,6 +16,7 @@
 #define BIRDO_MISC_H
 
 #include <Arduino.h>
+#include <random>
 
 namespace Utils
 {
@@ -35,6 +36,13 @@ namespace Utils
                 return true;
             }
             return false;
+        }
+        static uint32_t Random(uint32_t min, uint32_t max)
+        {
+            static std::random_device rd;
+            static std::mt19937 gen(rd());
+            std::uniform_int_distribution<uint32_t> dis(min, max);
+            return static_cast<uint32_t> (dis(gen));
         }
         template <typename T>
         static void print(T message)
