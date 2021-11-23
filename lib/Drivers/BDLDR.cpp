@@ -1,5 +1,5 @@
 
-#include "BLDR.h"
+#include "BDLDR.h"
 
 #include <algorithm>
 
@@ -13,14 +13,14 @@ namespace Drivers
         static constexpr uint16_t READING_MAX = 4095;
     }
 
-    /*static*/ uint8_t BLDR::m_pin = 0;
-    /*static*/ uint32_t BLDR::m_timer = 0;
-    /*static*/ uint32_t BLDR::m_interval = 0;
-    /*static*/ uint8_t BLDR::m_currentIndex = 0;
-    /*static*/ uint8_t BLDR::m_reachedIndex = 0;
-    /*static*/ uint16_t BLDR::m_buffer[] = {};
+    /*static*/ uint8_t BDLDR::m_pin = 0;
+    /*static*/ uint32_t BDLDR::m_timer = 0;
+    /*static*/ uint32_t BDLDR::m_interval = 0;
+    /*static*/ uint8_t BDLDR::m_currentIndex = 0;
+    /*static*/ uint8_t BDLDR::m_reachedIndex = 0;
+    /*static*/ uint16_t BDLDR::m_buffer[] = {};
 
-    /*static*/ void BLDR::Start(uint8_t pin)
+    /*static*/ void BDLDR::Start(uint8_t pin)
     {
         m_pin = pin;
         m_timer = millis();
@@ -32,7 +32,7 @@ namespace Drivers
             m_buffer[i] = 0;
         }
     }
-    /*static*/ void BLDR::Loop()
+    /*static*/ void BDLDR::Loop()
     {
         if (Utils::BMisc::Timer(m_timer, m_interval))
         {
@@ -43,7 +43,7 @@ namespace Drivers
             m_reachedIndex += (m_reachedIndex < BUFFER_SIZE) ? 1 : 0;
         }
     }
-    /*static*/ uint16_t BLDR::GetReading()
+    /*static*/ uint16_t BDLDR::GetReading()
     {
         uint32_t sum = 0;
         for (uint8_t i = 0; i < BUFFER_SIZE; ++i)

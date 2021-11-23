@@ -1,6 +1,6 @@
 
-#ifndef BIRDO_BBUTTON_H
-#define BIRDO_BBUTTON_H
+#ifndef BIRDO_BDBUTTON_H
+#define BIRDO_BDBUTTON_H
 
 #include <Arduino.h>
 
@@ -8,16 +8,16 @@ namespace Drivers
 {
     enum class ButtonState_e : uint8_t;
 
-    class BButton
+    class BDButton
     {
     public:
-        BButton(uint8_t pin,
+        BDButton(uint8_t pin,
                 void(pressedCallback)(void) = nullptr,
                 void(pressLongCallback)(void) = nullptr,
                 void(releasedCallback)(void) = nullptr,
                 void(pressDoubleCallback)(void) = nullptr,
                 bool inverted = false);
-        ~BButton() = default;
+        ~BDButton() = default;
 
         void Start();
         void Pause(bool isPaused);

@@ -1,19 +1,19 @@
 
-#ifndef BIRDO_BSTEPPER_H
-#define BIRDO_BSTEPPER_H
+#ifndef BIRDO_BD_STEPPER_H
+#define BIRDO_BD_STEPPER_H
 
-#include "Arduino.h"
-#include "AccelStepper.h"
+#include <Arduino.h>
+#include <AccelStepper.h>
 
 namespace Drivers
 {
     enum class Microsteps_e : uint8_t;
 
-    class BStepper : public AccelStepper
+    class BDStepper : public AccelStepper
     {
     public:
-        BStepper(uint8_t stepPin, uint8_t dirPin, uint8_t enbPin, Microsteps_e microsteps = static_cast<Microsteps_e>(0), float reduction = 0.0f);
-        ~BStepper() = default;
+        BDStepper(uint8_t stepPin, uint8_t dirPin, uint8_t enbPin, Microsteps_e microsteps = static_cast<Microsteps_e>(0), float reduction = 0.0f);
+        ~BDStepper() = default;
 
         void Start();
         void Loop();
@@ -40,4 +40,4 @@ namespace Drivers
     };
 }
 
-#endif // BIRDO_BSTEPPER_H
+#endif // BIRDO_BD_STEPPER_H

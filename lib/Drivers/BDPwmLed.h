@@ -1,5 +1,5 @@
-#ifndef BIRDO_PWM_LED_H
-#define BIRDO_PWM_LED_H
+#ifndef BIRDO_BD_PWM_LED_H
+#define BIRDO_BD_PWM_LED_H
 
 #include <Arduino.h>
 
@@ -7,11 +7,11 @@ namespace Drivers
 {
     enum class LedState_e : uint8_t;
 
-    class BPwmLed
+    class BDPwmLed
     {
     public:
-        BPwmLed(uint8_t ledPin, uint8_t pwmChannel, uint8_t ldrPin);
-        ~BPwmLed() = default;
+        BDPwmLed(uint8_t ledPin, uint8_t pwmChannel, uint8_t ldrPin);
+        ~BDPwmLed() = default;
 
         void Start();
         void Loop();
@@ -49,4 +49,4 @@ namespace Drivers
     };
 }
 
-#endif // BIRDO_PWM_LED_H
+#endif // BIRDO_BD_PWM_LED_H

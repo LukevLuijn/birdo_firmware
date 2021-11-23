@@ -1,8 +1,8 @@
 
-#include "BPwmLed.h"
+#include "BDPwmLed.h"
+#include "BDLDR.h"
+#include "BDMisc.h"
 
-#include "BLDR.h"
-#include "BMisc.h"
 #include "config.h"
 
 namespace Drivers
@@ -13,7 +13,7 @@ namespace Drivers
         static constexpr uint16_t PWM_RESOLUTION = 8;
     }
 
-    BPwmLed::BPwmLed(uint8_t ledPin, uint8_t pwmChannel, uint8_t ldrPin)
+    BDPwmLed::BDPwmLed(uint8_t ledPin, uint8_t pwmChannel, uint8_t ldrPin)
         : m_pin(ledPin),
           m_pwmChannel(pwmChannel),
           m_ldrPin(ldrPin),
@@ -30,12 +30,12 @@ namespace Drivers
           m_currentState(static_cast<LedState_e>(0))
     {
     }
-    void BPwmLed::Start()
+    void BDPwmLed::Start()
     {
         ledcSetup(m_pwmChannel, PWM_FREQUENCY, PWM_RESOLUTION);
         ledcAttachPin(m_pin, m_pwmChannel);
     }
-    void BPwmLed::Loop()
+    void BDPwmLed::Loop()
     {
         if (Utils::BMisc::Timer(m_sensorTimer, m_sensorInterval))
         {
@@ -68,7 +68,7 @@ namespace Drivers
             WriteBrightness();
         }
     }
-    void BPwmLed::TurnOn()
+    void BDPwmLed::TurnOn()
     {
         m_currentState = LedState_e::STATE_ON;
 
@@ -76,7 +76,7 @@ namespace Drivers
         m_currentBrightness = m_maxBrightness;
         WriteBrightness();
     }
-    void BPwmLed::TurnOff()
+    void BDPwmLed::TurnOff()
     {
         m_currentState = LedState_e::STATE_OFF;
 
@@ -84,22 +84,22 @@ namespace Drivers
         m_currentBrightness = 0;
         WriteBrightness();
     }
-    void BPwmLed::Breathe()
+    void BDPwmLed::Breathe()
     {
         m_currentState = LedState_e::STATE_BREATHE;
 
         m_breatheTimer = millis();
     }
-    void BPwmLed::SetBreatheTime(uint32_t time)
+    void BDPwmLed::SetBreatheTime(uint32_t time)
     {
         m_breatheTime = time;
         m_breatheInterval = m_breatheTime / m_maxBrightness;
     }
-    void BPwmLed::WriteBrightness()
+    void BDPwmLed::WriteBrightness()
     {
         ledcWrite(m_pwmChannel, m_currentBrightness);
     }
-    void BPwmLed::WriteMaxBrightness()
+    void BDPwmLed::WriteMaxBrightness()
     {
         uint16_t reading = BLDR::GetReading();
 

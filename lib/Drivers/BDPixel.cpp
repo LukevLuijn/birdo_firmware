@@ -1,14 +1,15 @@
 
-#include "BPixel.h"
-#include "BMisc.h"
-#include "BLDR.h"
+#include "BDPixel.h"
+#include "BDMisc.h"
+#include "BDLDR.h"
+
 #include "config.h"
 
 #include <algorithm>
 
 namespace Drivers
 {
-    BPixel::BPixel(uint8_t pin, uint8_t num_pixels, uint8_t ldrPin)
+    BDPixel::BDPixel(uint8_t pin, uint8_t num_pixels, uint8_t ldrPin)
         : m_pin(pin),
           m_ldrPin(ldrPin),
           m_numPixels(num_pixels),
@@ -27,13 +28,13 @@ namespace Drivers
           m_currentColor(Color{255, 255, 255})
     {
     }
-    void BPixel::Start()
+    void BDPixel::Start()
     {
         m_pixels.begin();
         m_pixels.clear();
         m_pixels.show();
     }
-    void BPixel::Loop()
+    void BDPixel::Loop()
     {
         if (Utils::BMisc::Timer(m_sensorTimer, m_sensorInterval))
         {
@@ -69,7 +70,7 @@ namespace Drivers
             m_pixels.show();
         }
     }
-    void BPixel::TurnOn(bool isStateChange)
+    void BDPixel::TurnOn(bool isStateChange)
     {
         if (isStateChange)
         {
@@ -78,7 +79,7 @@ namespace Drivers
         m_breatheOut = false;
         WriteColor();
     }
-    void BPixel::TurnOff(bool isStateChange)
+    void BDPixel::TurnOff(bool isStateChange)
     {
         if (isStateChange)
         {
@@ -88,13 +89,13 @@ namespace Drivers
         m_breatheOut = true;
         m_pixels.clear();
     }
-    void BPixel::Breathe()
+    void BDPixel::Breathe()
     {
         m_currentBrightness = m_pixels.getBrightness();
         m_currentState = PixelState_e::STATE_BREATHE;
         m_breatheTimer = millis();
     }
-    void BPixel::SetColor(const Color &color)
+    void BDPixel::SetColor(const Color &color)
     {
         m_currentColor = color;
 
@@ -103,7 +104,7 @@ namespace Drivers
             TurnOn(false);
         }
     }
-    void BPixel::SetColor(uint8_t red, uint8_t green, uint8_t blue)
+    void BDPixel::SetColor(uint8_t red, uint8_t green, uint8_t blue)
     {
         m_currentColor = {red, green, blue};
 
@@ -112,23 +113,23 @@ namespace Drivers
             TurnOn(false);
         }
     }
-    void BPixel::SetBreatheTime(uint32_t time)
+    void BDPixel::SetBreatheTime(uint32_t time)
     {
         m_breatheTime = time;
         m_breatheInterval = m_breatheTime / m_maxBrightness;
     }
-    uint32_t BPixel::ConvertColor(const Color &color)
+    uint32_t BDPixel::ConvertColor(const Color &color)
     {
         return m_pixels.Color(color.R, color.G, color.B);
     }
-    void BPixel::WriteColor()
+    void BDPixel::WriteColor()
     {
         for (uint8_t i = 0; i < m_numPixels; ++i)
         {
             m_pixels.setPixelColor(i, ConvertColor(m_currentColor));
         }
     }
-    void BPixel::WriteMaxBrightness()
+    void BDPixel::WriteMaxBrightness()
     {
         uint16_t reading = BLDR::GetReading();
 

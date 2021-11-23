@@ -1,11 +1,11 @@
-#ifndef BIRDO_BLDR_H
-#define BIRDO_BLDR_H
+#ifndef BIRDO_BDLDR_H
+#define BIRDO_BDLDR_H
 
 #include <Arduino.h>
 
 namespace Drivers
 {
-    class BLDR
+    class BDLDR
     {
     public:
         static void Start(uint8_t pin);
@@ -24,4 +24,4 @@ namespace Drivers
     };
 }
 
-#endif //BIRDO_BLDR_H
+#endif //BIRDO_BDLDR_H

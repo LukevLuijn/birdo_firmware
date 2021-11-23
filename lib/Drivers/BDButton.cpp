@@ -1,10 +1,10 @@
 
-#include "BButton.h"
+#include "BDButton.h"
 #include "BMisc.h"
 
 namespace Drivers
 {
-    BButton::BButton(uint8_t pin,
+    BDButton::BDButton(uint8_t pin,
                      void(pressedCallback)(void),
                      void(pressLongCallback)(void),
                      void(releasedCallback)(void),
@@ -31,7 +31,7 @@ namespace Drivers
           m_pressDoubleCallback(pressDoubleCallback)
     {
     }
-    void BButton::Start()
+    void BDButton::Start()
     {
         pinMode(m_pin, INPUT_PULLUP);
 
@@ -41,11 +41,11 @@ namespace Drivers
 
         m_isActive = true;
     }
-    void BButton::Pause(bool isPaused)
+    void BDButton::Pause(bool isPaused)
     {
         m_isActive = !isPaused;
     }
-    void BButton::Loop()
+    void BDButton::Loop()
     {
         if (!m_isActive)
             return;
@@ -99,7 +99,7 @@ namespace Drivers
             }
         }
     }
-    bool BButton::IsPressed()
+    bool BDButton::IsPressed()
     {
         if (m_isInverted)
         {
@@ -110,16 +110,16 @@ namespace Drivers
         return (m_prevSteadyState == HIGH) &&
                (m_lastSteadyState == LOW);
     }
-    bool BButton::IsPressedLong()
+    bool BDButton::IsPressedLong()
     {
         return (m_lastPressType == static_cast<uint8_t>(ButtonState_e::PRESS_NORMAL)) &&
                (m_currentHoldTime >= m_longPressTime);
     }
-    bool BButton::IsPressedDouble()
+    bool BDButton::IsPressedDouble()
     {
         return m_isPressDouble;
     }
-    bool BButton::IsReleased()
+    bool BDButton::IsReleased()
     {
         if (m_isInverted)
         {
@@ -130,47 +130,47 @@ namespace Drivers
         return (m_prevSteadyState == LOW) &&
                (m_lastSteadyState == HIGH);
     }
-    void BButton::SetDebounceTime(uint32_t time)
+    void BDButton::SetDebounceTime(uint32_t time)
     {
         m_debounceTime = time;
     }
-    void BButton::SetLongPressTime(uint32_t time)
+    void BDButton::SetLongPressTime(uint32_t time)
     {
         m_longPressTime = time;
     }
-    void BButton::SetDoublePressTime(uint32_t time)
+    void BDButton::SetDoublePressTime(uint32_t time)
     {
         m_doublePressTime = time;
     }
-    void BButton::SetInverted(bool inverted)
+    void BDButton::SetInverted(bool inverted)
     {
         m_isInverted = inverted;
     }
-    uint32_t BButton::GetHoldTime()
+    uint32_t BDButton::GetHoldTime()
     {
         return m_currentHoldTime;
     }
-    void BButton::SetPressedCallback(void(func)(void))
+    void BDButton::SetPressedCallback(void(func)(void))
     {
         m_pressedCallback = func;
     }
-    void BButton::SetReleasedCallback(void(func)(void))
+    void BDButton::SetReleasedCallback(void(func)(void))
     {
         m_releasedCallback = func;
     }
-    void BButton::SetPressLongCallback(void(func)(void))
+    void BDButton::SetPressLongCallback(void(func)(void))
     {
         m_pressLongCallback = func;
     }
-    void BButton::SetPressDoubleCallback(void(func)(void))
+    void BDButton::SetPressDoubleCallback(void(func)(void))
     {
         m_pressDoubleCallback = func;
     }
-    ButtonState_e BButton::GetLastButtonState()
+    ButtonState_e BDButton::GetLastButtonState()
     {
         return static_cast<ButtonState_e>(m_lastPressType);
     }
-    bool BButton::GetIsDoublePressed()
+    bool BDButton::GetIsDoublePressed()
     {
         return m_isPressDouble;
     }

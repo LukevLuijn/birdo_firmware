@@ -1,10 +1,10 @@
-#ifndef BIRDO_BPIXEL_H
-#define BIRDO_BPIXEL_H
+#ifndef BIRDO_BDPIXEL_H
+#define BIRDO_BDPIXEL_H
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
-#include "BLDR.h"
+#include "BDLDR.h"
 
 namespace Drivers
 {
@@ -15,11 +15,11 @@ namespace Drivers
         uint8_t R,G,B;
     };
 
-    class BPixel
+    class BDPixel
     {
     public:
-        BPixel(uint8_t pin, uint8_t num_pixels, uint8_t ldrPin);
-        ~BPixel() = default;
+        BDPixel(uint8_t pin, uint8_t num_pixels, uint8_t ldrPin);
+        ~BDPixel() = default;
 
         void Start();
         void Loop();
@@ -67,4 +67,4 @@ namespace Drivers
     };
 }
 
-#endif // BIRDO_BPIXEL_H
+#endif // BIRDO_BDPIXEL_H
