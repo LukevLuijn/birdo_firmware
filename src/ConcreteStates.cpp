@@ -1,6 +1,6 @@
 
 #include "ConcreteStates.h"
-#include "BMisc.h"
+#include "Misc.h"
 
 namespace Application
 {
@@ -37,7 +37,7 @@ namespace Application
     }
     void Init::EntryAction()
     {
-        Utils::BMisc::println(TAG, "Init");
+        Utils::Misc::println(TAG, "Init");
         m_timer = millis();
     }
     void Init::DoActivity()
@@ -48,7 +48,7 @@ namespace Application
                                       static_cast<uint16_t>(States_e::STATE_INIT));
             m_app.ScheduleEvent(event);
         }
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             StateMachine::Event event(static_cast<uint16_t>(Events_e::TIMER_EXPIRED),
                                       static_cast<uint16_t>(States_e::STATE_INIT));
@@ -85,7 +85,7 @@ namespace Application
     }
     void Idle::EntryAction()
     {
-        Utils::BMisc::println(TAG, "idle");
+        Utils::Misc::println(TAG, "idle");
         m_timer = millis();
     }
     void Idle::DoActivity()
@@ -96,7 +96,7 @@ namespace Application
                                       static_cast<uint16_t>(States_e::STATE_IDLE));
             m_app.ScheduleEvent(event);
         }
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             StateMachine::Event event(static_cast<uint16_t>(Events_e::TIMER_EXPIRED),
                                       static_cast<uint16_t>(States_e::STATE_IDLE));
@@ -133,7 +133,7 @@ namespace Application
     }
     void Pressed::EntryAction()
     {
-        Utils::BMisc::println(TAG, "pressed");
+        Utils::Misc::println(TAG, "pressed");
     }
     void Pressed::DoActivity()
     {
@@ -175,7 +175,7 @@ namespace Application
     }
     void PressedLong::EntryAction()
     {
-        Utils::BMisc::println(TAG, "pressedLong");
+        Utils::Misc::println(TAG, "pressedLong");
     }
     void PressedLong::DoActivity()
     {
@@ -227,7 +227,7 @@ namespace Application
     }
     void CheckPress::EntryAction()
     {
-        Utils::BMisc::println(TAG, "checkPress");
+        Utils::Misc::println(TAG, "checkPress");
         m_timer = millis();
     }
     void CheckPress::DoActivity()
@@ -239,7 +239,7 @@ namespace Application
             m_app.ScheduleEvent(event);
         }
 
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             if (m_app.button.GetLastButtonState() == Drivers::ButtonState_e::PRESS_NORMAL)
             {
@@ -280,7 +280,7 @@ namespace Application
     }
     void Sleep::EntryAction()
     {
-        Utils::BMisc::println(TAG, "sleep");
+        Utils::Misc::println(TAG, "sleep");
     }
     void Sleep::DoActivity()
     {
@@ -316,12 +316,12 @@ namespace Application
     }
     void Message::EntryAction()
     {
-        Utils::BMisc::println(TAG, "Message");
+        Utils::Misc::println(TAG, "Message");
         m_timer = millis();
     }
     void Message::DoActivity()
     {
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             StateMachine::Event event(static_cast<uint16_t>(Events_e::TIMER_EXPIRED),
                                       static_cast<uint16_t>(States_e::STATE_MESSAGE));
@@ -353,12 +353,12 @@ namespace Application
     }
     void WellDone::EntryAction()
     {
-        Utils::BMisc::println(TAG, "welldone");
+        Utils::Misc::println(TAG, "welldone");
         m_timer = millis();
     }
     void WellDone::DoActivity()
     {
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             StateMachine::Event event(static_cast<uint16_t>(Events_e::TIMER_EXPIRED),
                                       static_cast<uint16_t>(States_e::STATE_WELL_DONE));

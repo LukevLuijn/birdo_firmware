@@ -1,7 +1,7 @@
 
 #include "BDPwmLed.h"
 #include "BDLDR.h"
-#include "BDMisc.h"
+#include "Misc.h"
 
 #include "config.h"
 
@@ -37,7 +37,7 @@ namespace Drivers
     }
     void BDPwmLed::Loop()
     {
-        if (Utils::BMisc::Timer(m_sensorTimer, m_sensorInterval))
+        if (Utils::Misc::Timer(m_sensorTimer, m_sensorInterval))
         {
             WriteMaxBrightness();
         }
@@ -48,7 +48,7 @@ namespace Drivers
         }
         else if (m_currentState == LedState_e::STATE_BREATHE)
         {
-            if (Utils::BMisc::Timer(m_breatheTimer, m_breatheInterval))
+            if (Utils::Misc::Timer(m_breatheTimer, m_breatheInterval))
             {
                 m_currentBrightness += (m_breatheOut) ? 1 : -1;
 
@@ -63,7 +63,7 @@ namespace Drivers
             }
         }
 
-        if (Utils::BMisc::Timer(m_updateTimer, m_updateInterval))
+        if (Utils::Misc::Timer(m_updateTimer, m_updateInterval))
         {
             WriteBrightness();
         }
@@ -101,7 +101,7 @@ namespace Drivers
     }
     void BDPwmLed::WriteMaxBrightness()
     {
-        uint16_t reading = BLDR::GetReading();
+        uint16_t reading = BDLDR::GetReading();
 
         m_maxBrightness = map(reading, 0, 4095, 0, 255);
         m_maxBrightness = std::max(static_cast<uint8_t>(1), m_maxBrightness);

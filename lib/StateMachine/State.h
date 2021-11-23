@@ -7,23 +7,20 @@
 
 #include "Event.h"
 
-namespace StateMachine
-{
-    class Context;
+namespace StateMachine {
+class Context;
 
-    class State
-    {
-    public:
+class State {
+public:
+  State() = default;
+  State(const State &state) = delete;
+  virtual ~State() = default;
 
-        State() = default;
-        State(const State& state) = delete;
-        virtual ~State() = default;
+  virtual bool HandleEvent(const Event &event, Context &context) = 0;
+  virtual void EntryAction() = 0;
+  virtual void DoActivity() = 0;
+  virtual void ExitAction() = 0;
+};
+} // namespace StateMachine
 
-        virtual bool HandleEvent(const Event& event, Context& context) = 0;
-        virtual void EntryAction() = 0;
-        virtual void DoActivity() = 0;
-        virtual void ExitAction() = 0;
-    };
-}
-
-#endif//STATE_MACHINE_STATE_H
+#endif // STATE_MACHINE_STATE_H

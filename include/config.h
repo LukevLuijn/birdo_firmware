@@ -4,7 +4,7 @@
 
 #include <Arduino.h>
 
-#include "BStepper.h"
+#include "BDStepper.h"
 
 #define MICROSTEPS Drivers::Microsteps_e::STEP_1_2 // defining the microsteps
 #define REDUCTION 1                              // reduction is zero (with 0, you cannot calculate)

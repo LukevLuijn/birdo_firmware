@@ -1,5 +1,5 @@
-#ifndef BIRDO_BMISC_H
-#define BIRDO_BMISC_H
+#ifndef BIRDO_MISC_H
+#define BIRDO_MISC_H
 
 #include <Arduino.h>
 
@@ -10,7 +10,7 @@ namespace Utils
         const bool DEBUG_MODE = true;
     }
 
-    class BMisc
+    class Misc
     {
     public:
         static bool Timer(uint32_t &previousTime, uint32_t interval)

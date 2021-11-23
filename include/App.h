@@ -5,11 +5,11 @@
 #include "Context.h"
 
 #include "config.h"
-#include "BStepper.h"
-#include "BPixel.h"
-#include "BButton.h"
-#include "BPwmLed.h"
-#include "BLDR.h"
+#include "BDStepper.h"
+#include "BDPixel.h"
+#include "BDButton.h"
+#include "BDPwmLed.h"
+#include "BDLDR.h"
 
 namespace Application
 {
@@ -23,11 +23,11 @@ namespace Application
         void Loop();
 
     public:
-        Drivers::BStepper stepperBot;
-        Drivers::BStepper stepperTop;
-        Drivers::BPixel pixels;
-        Drivers::BButton button;
-        Drivers::BPwmLed led;
+        Drivers::BDStepper stepperBot;
+        Drivers::BDStepper stepperTop;
+        Drivers::BDPixel pixels;
+        Drivers::BDButton button;
+        Drivers::BDPwmLed led;
     };
 }
 

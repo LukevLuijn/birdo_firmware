@@ -1,9 +1,8 @@
 
-#include "BDLDR.h"
-
 #include <algorithm>
 
-#include "BMisc.h"
+#include "BDLDR.h"
+#include "Misc.h"
 
 namespace Drivers
 {
@@ -34,7 +33,7 @@ namespace Drivers
     }
     /*static*/ void BDLDR::Loop()
     {
-        if (Utils::BMisc::Timer(m_timer, m_interval))
+        if (Utils::Misc::Timer(m_timer, m_interval))
         {
             m_buffer[m_currentIndex] = analogRead(m_pin);
 
