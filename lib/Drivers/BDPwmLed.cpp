@@ -9,7 +9,7 @@
 //   Luke van Luijn (Bout Electronics)
 //
 // Description:
-//   Driver for PWM capable LED
+//   Driver for PWM capable LED.
 // ======================================
 
 #include "BDPwmLed.h"

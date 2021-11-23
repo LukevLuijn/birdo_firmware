@@ -9,7 +9,7 @@
 //   Luke van Luijn (Bout Electronics)
 //
 // Description:
-//   Event for statemachine.
+//   Miscellaneous methods.
 // ======================================
 
 #ifndef BIRDO_MISC_H

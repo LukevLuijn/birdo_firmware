@@ -6,14 +6,13 @@
 //   application
 //
 // Description:
-//   global configuration
+//   global configuration.
 // ======================================
 
 #ifndef BIRDO_CONFIG_H
 #define BIRDO_CONFIG_H
 
 #include <Arduino.h>
-
 #include "BDStepper.h"
 
 #define MICROSTEPS Drivers::Microsteps_e::STEP_1_2 // defining the microsteps
