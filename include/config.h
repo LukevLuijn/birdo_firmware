@@ -1,3 +1,13 @@
+// ======================================
+// Filename:
+//   config.h
+//
+// Product or product-subsystem:
+//   application
+//
+// Description:
+//   global configuration
+// ======================================
 
 #ifndef BIRDO_CONFIG_H
 #define BIRDO_CONFIG_H

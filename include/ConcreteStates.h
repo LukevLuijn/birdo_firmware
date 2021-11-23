@@ -1,3 +1,13 @@
+// ======================================
+// Filename:
+//   ConcreteStates.h
+//
+// Product or product-subsystem:
+//   application
+//
+// Description:
+//   Actual states for statemachine.
+// ======================================
 
 #ifndef BIRDO_CONCRETE_STATES_H
 #define BIRDO_CONCRETE_STATES_H

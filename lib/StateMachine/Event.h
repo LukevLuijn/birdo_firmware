@@ -1,7 +1,16 @@
+// ======================================
+// Filename:
+//   Event.h
 //
-// Created by luke on 22-11-21.
+// Product or product-subsystem:
+//   Statemachine template
 //
-
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Event for statemachine.
+// ======================================
 #ifndef STATE_MACHINE_EVENT_H
 #define STATE_MACHINE_EVENT_H
 

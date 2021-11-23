@@ -1,3 +1,17 @@
+// ======================================
+// Filename:
+//   Misc.h
+//
+// Product or product-subsystem:
+//   Miscellaneous methods
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Event for statemachine.
+// ======================================
+
 #ifndef BIRDO_MISC_H
 #define BIRDO_MISC_H
 

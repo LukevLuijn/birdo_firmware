@@ -1,3 +1,13 @@
+// ======================================
+// Filename:
+//   App.h
+//
+// Product or product-subsystem:
+//   application
+//
+// Description:
+//   Main application.
+// ======================================
 
 #ifndef BIRDO_APP_H
 #define BIRDO_APP_H

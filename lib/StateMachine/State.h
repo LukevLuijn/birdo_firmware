@@ -1,6 +1,16 @@
+// ======================================
+// Filename:
+//   State.h
 //
-// Created by luke on 22-11-21.
+// Product or product-subsystem:
+//   Statemachine template
 //
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   State for statemachine.
+// ======================================
 
 #ifndef STATE_MACHINE_STATE_H
 #define STATE_MACHINE_STATE_H

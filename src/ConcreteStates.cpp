@@ -1,3 +1,13 @@
+// ======================================
+// Filename:
+//   ConcreteStates.cpp
+//
+// Product or product-subsystem:
+//   application
+//
+// Description:
+//   Actual states for statemachine.
+// ======================================
 
 #include "ConcreteStates.h"
 #include "Misc.h"

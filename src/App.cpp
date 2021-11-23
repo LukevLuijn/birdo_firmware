@@ -1,3 +1,13 @@
+// ======================================
+// Filename:
+//   App.cpp
+//
+// Product or product-subsystem:
+//   application
+//
+// Description:
+//   Main application.
+// ======================================
 
 #include "App.h"
 #include "ConcreteStates.h"
