@@ -1,4 +1,20 @@
 
+// ---------------------------------------------------------------------------
+//
+// Filename:
+//   BDButton.h
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for hardware button.
+//
+// ---------------------------------------------------------------------------
+
 #ifndef BIRDO_BDBUTTON_H
 #define BIRDO_BDBUTTON_H
 

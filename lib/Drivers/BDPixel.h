@@ -1,3 +1,17 @@
+// ======================================
+// Filename:
+//   BDPixel.h
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for Adafruit NeoPixel strip.
+// ======================================
+
 #ifndef BIRDO_BDPIXEL_H
 #define BIRDO_BDPIXEL_H
 

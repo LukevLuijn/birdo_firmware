@@ -1,3 +1,16 @@
+// ======================================
+// Filename:
+//   BDStepper.h
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for stepper control.
+// ======================================
 
 #ifndef BIRDO_BD_STEPPER_H
 #define BIRDO_BD_STEPPER_H

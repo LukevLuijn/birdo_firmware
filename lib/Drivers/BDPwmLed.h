@@ -1,3 +1,17 @@
+// ======================================
+// Filename:
+//   BDPwmLed.h
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for PWM capable LED.
+// ======================================
+
 #ifndef BIRDO_BD_PWM_LED_H
 #define BIRDO_BD_PWM_LED_H
 

@@ -1,3 +1,17 @@
+// ======================================
+// Filename:
+//   BDLDR.h
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for LDR.
+// ======================================
+
 #ifndef BIRDO_BDLDR_H
 #define BIRDO_BDLDR_H
 

@@ -1,3 +1,16 @@
+// ======================================
+// Filename:
+//   BDStepper.cpp
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for stepper control.
+// ======================================
 
 #include "BDStepper.h"
 

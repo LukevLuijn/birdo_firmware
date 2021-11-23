@@ -1,3 +1,16 @@
+// ======================================
+// Filename:
+//   BDPwmLed.cpp
+//
+// Product or product-subsystem:
+//   Hardware drivers
+//
+// Original author:
+//   Luke van Luijn (Bout Electronics)
+//
+// Description:
+//   Driver for PWM capable LED
+// ======================================
 
 #include "BDPwmLed.h"
 #include "BDLDR.h"
