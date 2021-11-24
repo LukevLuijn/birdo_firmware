@@ -50,7 +50,6 @@ namespace Application
         Utils::Misc::println(TAG, "Init");
         m_timer = millis();
 
-        m_app.led.TurnOff();
         m_app.nose.TurnOff();
         m_app.pixels.TurnOff();
 
@@ -58,8 +57,11 @@ namespace Application
         m_app.stepperBot.MoveDegrees(rotation);
         m_app.stepperTop.MoveDegrees(-rotation);
 
-        m_app.pixels.SetColor(Drivers::Color{0, 255, 255});
+        m_app.pixels.SetColor(ACCENT_COLOR);
+        m_app.nose.SetColor(ACCENT_COLOR);
+
         m_app.pixels.TurnOn();
+        m_app.nose.TurnOn();
 
         m_previousMotorSpeed = std::max(m_app.stepperBot.maxSpeed(), m_app.stepperTop.maxSpeed());
     }
@@ -89,13 +91,14 @@ namespace Application
             m_app.stepperTop.MoveTo(0);
 
             m_app.pixels.TurnOff();
+            m_app.nose.TurnOff();
             m_app.pixels.SetColor(DEFAULT_COLOR);
+            m_app.nose.SetColor(DEFAULT_COLOR);
+
             uint32_t time = m_timer + STATE_INIT_TIMER - millis();
-            m_app.led.SetBreatheTime(time);
             m_app.nose.SetBreatheTime(time);
             m_app.pixels.SetBreatheTime(time);
 
-            m_app.led.Breathe();
             m_app.nose.Breathe();
             m_app.pixels.Breathe();
 
@@ -110,8 +113,7 @@ namespace Application
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
 
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
+        m_app.nose.TurnOn();
         m_app.pixels.TurnOn();
     }
 
@@ -182,6 +184,7 @@ namespace Application
     }
     void Idle::ExitAction()
     {
+        // nothing yet.
     }
 
     // ================ PRESSED ================================= //
@@ -213,7 +216,7 @@ namespace Application
     void Pressed::EntryAction()
     {
         Utils::Misc::println(TAG, "pressed");
-        m_app.led.TurnOn();
+        m_app.nose.SetColor(ACCENT_COLOR);
         m_app.nose.TurnOn();
     }
     void Pressed::DoActivity()
@@ -231,7 +234,11 @@ namespace Application
             m_app.ScheduleEvent(event);
         }
     }
-    void Pressed::ExitAction() {}
+    void Pressed::ExitAction()
+    {
+        // m_app.nose.SetColor(DEFAULT_COLOR);
+        // m_app.nose.TurnOn();
+    }
 
     // ================ PRESSED_LONG ============================ //
     bool PressedLong::HandleEvent(const Event &event, Context &context)
@@ -258,9 +265,7 @@ namespace Application
     {
         Utils::Misc::println(TAG, "pressedLong");
 
-        m_app.led.SetBreatheTime(BASE_BREATHE_TIME);
-        m_app.led.Breathe();
-
+        m_app.nose.SetColor(ACCENT_COLOR);
         m_app.nose.SetBreatheTime(BASE_BREATHE_TIME);
         m_app.nose.Breathe();
     }
@@ -273,10 +278,10 @@ namespace Application
             m_app.ScheduleEvent(event);
         }
     }
-    void PressedLong::ExitAction() 
+    void PressedLong::ExitAction()
     {
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
+        // m_app.nose.SetColor(DEFAULT_COLOR);
+        // m_app.nose.TurnOn();
     }
 
     // ================ CHECK_PRESS ============================ //
@@ -319,8 +324,6 @@ namespace Application
     {
         Utils::Misc::println(TAG, "checkPress");
         m_timer = millis();
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
     }
     void CheckPress::DoActivity()
     {
@@ -349,22 +352,20 @@ namespace Application
 
         if (m_app.button.IsPressed())
         {
-            m_app.led.TurnOn();
+            m_app.nose.SetColor(ACCENT_COLOR);
             m_app.nose.TurnOn();
         }
         if (m_app.button.IsPressedLong())
         {
-            m_app.led.SetBreatheTime(BASE_BREATHE_TIME);
-            m_app.led.Breathe();
-
+            m_app.nose.SetColor(ACCENT_COLOR);
             m_app.nose.SetBreatheTime(BASE_BREATHE_TIME);
             m_app.nose.Breathe();
         }
     }
     void CheckPress::ExitAction()
     {
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
+        m_app.nose.SetColor(DEFAULT_COLOR);
+        m_app.nose.TurnOn();
     }
 
     // ================ SLEEP =================================== //
@@ -391,7 +392,6 @@ namespace Application
     void Sleep::EntryAction()
     {
         Utils::Misc::println(TAG, "sleep");
-        m_app.led.TurnOff();
         m_app.nose.TurnOff();
         m_app.pixels.TurnOff();
     }
@@ -404,7 +404,10 @@ namespace Application
             m_app.ScheduleEvent(event);
         }
     }
-    void Sleep::ExitAction() {}
+    void Sleep::ExitAction()
+    {
+        // nothing yet.
+    }
 
     // ================ MESSAGE ================================= //
     bool Message::HandleEvent(const Event &event, Context &context)
@@ -432,9 +435,7 @@ namespace Application
         Utils::Misc::println(TAG, "Message");
         m_timer = millis();
 
-        m_app.led.SetBreatheTime(BASE_BREATHE_TIME);
-        m_app.led.Breathe();
-
+        m_app.nose.SetColor(MESSAGE_COLOR);
         m_app.nose.SetBreatheTime(BASE_BREATHE_TIME);
         m_app.nose.Breathe();
 
@@ -459,8 +460,9 @@ namespace Application
     }
     void Message::ExitAction()
     {
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
+        m_app.nose.SetColor(DEFAULT_COLOR);
+        m_app.nose.TurnOn();
+
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
     }
@@ -491,7 +493,7 @@ namespace Application
         Utils::Misc::println(TAG, "welldone");
         m_timer = millis();
 
-        m_app.led.TurnOn();
+        m_app.nose.SetColor(WELL_DONE_COLOR);
         m_app.nose.TurnOn();
 
         uint16_t min = 180, max = 360;
@@ -518,8 +520,9 @@ namespace Application
     }
     void WellDone::ExitAction()
     {
-        m_app.led.TurnOff();
-        m_app.nose.TurnOff();
+        m_app.nose.SetColor(DEFAULT_COLOR);
+        m_app.nose.TurnOn();
+
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
     }

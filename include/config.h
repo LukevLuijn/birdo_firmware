@@ -19,14 +19,18 @@
 
 #define STATE_INIT_TIMER 5000
 #define STATE_IDLE_TIMER 30000
-#define STATE_CHECK_PRESS_TIMER 400
 #define STATE_MESSAGE_TIMER 5000
 #define STATE_WELL_DONE_TIMER 5000
+
+#define STATE_CHECK_PRESS_TIMER 400
 
 #define BASE_BREATHE_TIME 1000
 #define BASE_LONG_PRESS_TIME 1000
 
-#define DEFAULT_COLOR Drivers::Color {255,70,0}
+#define DEFAULT_COLOR Drivers::Color   {255,70,0}   // orange
+#define ACCENT_COLOR Drivers::Color    {0,255,255}  // cyan
+#define MESSAGE_COLOR Drivers::Color   {255,25,150} // pink
+#define WELL_DONE_COLOR Drivers::Color {100,255,0}  // green
 
 // ============= Mechanical configuration =================
 
@@ -45,17 +49,12 @@
 #define NUM_PIXELS 24        // defining the amount of pixels of the LED (each strip is 8 LEDs * 3 = 24)
 
 #define NOSE_PIXEL_PIN GPIO_NUM_27
-#define NUM_NOSE_PIXELS 8
+#define NUM_NOSE_PIXELS 12
 
 #define LDR_PIN GPIO_NUM_15  //defining the pin of the LDR sensor
-
-
 
 #define BUTTON_PIN GPIO_NUM_13
 #define LED_BUT_PIN GPIO_NUM_12
 #define LED_BUT_CHANNEL 0
-
-
-
 
 #endif // BIRDO_CONFIG_H
