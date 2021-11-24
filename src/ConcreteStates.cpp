@@ -16,7 +16,7 @@ namespace Application
 {
     namespace
     {
-        const char *TAG = "STATE";
+        const char *TAG = "STATE"; // kleine git change
     }
 
     // ================ Init =================================== //
