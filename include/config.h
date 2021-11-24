@@ -43,7 +43,13 @@
 
 #define PIXEL_PIN GPIO_NUM_14 // defining the pin of the LED strip(s)
 #define NUM_PIXELS 24        // defining the amount of pixels of the LED (each strip is 8 LEDs * 3 = 24)
+
+#define NOSE_PIXEL_PIN GPIO_NUM_27
+#define NUM_NOSE_PIXELS 8
+
 #define LDR_PIN GPIO_NUM_15  //defining the pin of the LDR sensor
+
+
 
 #define BUTTON_PIN GPIO_NUM_13
 #define LED_BUT_PIN GPIO_NUM_12

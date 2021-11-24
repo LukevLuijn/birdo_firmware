@@ -36,6 +36,7 @@ namespace Application
         Drivers::BDStepper stepperBot;
         Drivers::BDStepper stepperTop;
         Drivers::BDPixel pixels;
+        Drivers::BDPixel nose;
         Drivers::BDButton button;
         Drivers::BDPwmLed led;
     };
