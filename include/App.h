@@ -20,6 +20,7 @@
 #include "BDButton.h"
 #include "BDPwmLed.h"
 #include "BDLDR.h"
+#include "BDPlayer.h"
 
 namespace Application
 {
@@ -31,6 +32,7 @@ namespace Application
 
         void Start();
         void Loop();
+        void Sound(Drivers::Sounds_e sound);
 
     public:
         Drivers::BDStepper stepperBot;
@@ -39,6 +41,7 @@ namespace Application
         Drivers::BDPixel nose;
         Drivers::BDButton button;
         Drivers::BDPwmLed led;
+        Drivers::BDPlayer player;
     };
 }
 

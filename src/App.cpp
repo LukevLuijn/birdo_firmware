@@ -21,7 +21,8 @@ namespace Application
           pixels(Drivers::BDPixel(PIXEL_PIN, NUM_PIXELS, LDR_PIN)),
           nose(Drivers::BDPixel(NOSE_PIXEL_PIN, NUM_NOSE_PIXELS, LDR_PIN)),
           button(Drivers::BDButton(BUTTON_PIN)),
-          led(Drivers::BDPwmLed(LED_BUT_PIN, LED_BUT_CHANNEL, LDR_PIN))
+          led(Drivers::BDPwmLed(LED_BUT_PIN, LED_BUT_CHANNEL, LDR_PIN)),
+          player(Drivers::BDPlayer(UART_RX, UART_TX))
     {
     }
     void App::Start()
@@ -46,20 +47,42 @@ namespace Application
         button.SetLongPressTime(BASE_LONG_PRESS_TIME);
         button.SetDoublePressTime(STATE_CHECK_PRESS_TIMER);
 
+        player.Start();
+
         auto start = std::make_shared<Init>(*this);
         SetCurrentState(start);
     }
     void App::Loop()
     {
-        Drivers::BDLDR::Loop();
+        if (ENABLE_LDR)
+        {
+            Drivers::BDLDR::Loop();
+        }
+        if (ENABLE_TOP_STEPPER)
+        {
+            stepperTop.Loop();
+        }
+        if (ENABLE_BOT_STEPPER)
+        {
+            stepperBot.Loop();
+        }
+        if (ENABLE_NOSE_LEDS)
+        {
+            nose.Loop();
+        }
+        if (ENABLE_BASE_LEDS)
+        {
+            pixels.Loop();
+        }
 
-        stepperBot.Loop();
-        stepperTop.Loop();
-        pixels.Loop();
-        nose.Loop();
         button.Loop();
-        led.Loop();
-
         HandleEventList();
+    }
+    void App::Sound(Drivers::Sounds_e sound)
+    {
+        if (ENABLE_SOUND)
+        {
+            player.Play(sound, VOLUME_LEVEL);
+        }
     }
 }

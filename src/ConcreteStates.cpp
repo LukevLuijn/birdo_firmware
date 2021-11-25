@@ -64,6 +64,7 @@ namespace Application
         m_app.nose.TurnOn();
 
         m_previousMotorSpeed = std::max(m_app.stepperBot.maxSpeed(), m_app.stepperTop.maxSpeed());
+        m_app.Sound(Drivers::Sounds_e::MORNING_CHICKEN);
     }
     void Init::DoActivity()
     {
@@ -115,6 +116,8 @@ namespace Application
 
         m_app.nose.TurnOn();
         m_app.pixels.TurnOn();
+
+        m_app.player.stop();
     }
 
     // ================ IDLE ==================================== //
@@ -130,15 +133,10 @@ namespace Application
         }
         case Events_e::TIMER_EXPIRED:
         {
+            Transition();
+
             auto state = std::make_shared<Idle>(m_app);
             context.SetCurrentState(state);
-
-            // Transition
-            uint16_t min = 180, max = 360;
-            int32_t position = Utils::Misc::Random(min, max);
-            m_app.stepperBot.MoveDegrees(position);
-            m_app.stepperTop.MoveDegrees(-position);
-
             return true;
         }
         case Events_e::BUTTON_PRESS_LONG:
@@ -185,6 +183,60 @@ namespace Application
     void Idle::ExitAction()
     {
         // nothing yet.
+
+        m_app.player.stop();
+    }
+    void Idle::Transition()
+    {
+        auto DoSound = [&]()
+        {
+            const uint8_t N_OPTIONS = 4;
+            Drivers::Sounds_e options[] = {
+                Drivers::Sounds_e::BARKING_DOG,
+                Drivers::Sounds_e::BLACKBIRD,
+                Drivers::Sounds_e::CARTOON_BIRD_HAPPY,
+                Drivers::Sounds_e::FIET_VIEW};
+
+            uint32_t choice = Utils::Misc::Random(0, N_OPTIONS);
+            m_app.Sound(options[choice]);
+        };
+
+        auto DoMovement = [&]()
+        {
+            uint16_t min = 180, max = 360;
+            int32_t position = Utils::Misc::Random(min, max);
+            m_app.stepperBot.MoveDegrees(position);
+            m_app.stepperTop.MoveDegrees(-position);
+        };
+
+        enum Options
+        {
+            SOUND,
+            MOVEMENT,
+            BOTH
+        };
+
+        uint32_t choice = Utils::Misc::Random(0, 2);
+
+        switch (static_cast<Options>(choice))
+        {
+        case SOUND:
+            Utils::Misc::println(TAG, "transision idle: sound");
+            DoSound();
+            break;
+        case MOVEMENT:
+            Utils::Misc::println(TAG, "transision idle: movement");
+            DoMovement();
+            break;
+        case BOTH:
+            Utils::Misc::println(TAG, "transision idle: both");
+            DoSound();
+            DoMovement();
+            break;
+        default:
+            Utils::Misc::println(TAG, "undefined option");
+            break;
+        }
     }
 
     // ================ PRESSED ================================= //
@@ -280,8 +332,6 @@ namespace Application
     }
     void PressedLong::ExitAction()
     {
-        // m_app.nose.SetColor(DEFAULT_COLOR);
-        // m_app.nose.TurnOn();
     }
 
     // ================ CHECK_PRESS ============================ //
@@ -442,6 +492,8 @@ namespace Application
         uint16_t rotation = 135;
         m_app.stepperBot.MoveDegrees(rotation);
         m_app.stepperTop.MoveDegrees(-rotation);
+
+        m_app.Sound(Drivers::Sounds_e::VINK_HAPPY);
     }
     void Message::DoActivity()
     {
@@ -465,6 +517,8 @@ namespace Application
 
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
+
+        m_app.player.stop();
     }
 
     // ================ WELL_DONE =============================== //
@@ -500,6 +554,8 @@ namespace Application
         int32_t position = Utils::Misc::Random(min, max);
         m_app.stepperBot.MoveDegrees(position);
         m_app.stepperTop.MoveDegrees(-position);
+
+        m_app.Sound(Drivers::Sounds_e::NIGHTINGALE_WELL_DONE);
     }
     void WellDone::DoActivity()
     {
@@ -525,5 +581,7 @@ namespace Application
 
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
+
+        m_app.player.stop();
     }
 }

@@ -41,7 +41,8 @@ namespace Application
                                   m_timer(0),
                                   m_previousMotorSpeed(0),
                                   m_movementComplete(false)
-                                   {}
+        {
+        }
         ~Init() override = default;
 
         bool HandleEvent(const Event &event, Context &context) override;
@@ -66,6 +67,9 @@ namespace Application
         void EntryAction() override;
         void DoActivity() override;
         void ExitAction() override;
+
+    private:
+        void Transition();
 
     private:
         uint32_t m_timer;

@@ -27,10 +27,24 @@
 #define BASE_BREATHE_TIME 1000
 #define BASE_LONG_PRESS_TIME 1000
 
+#define VOLUME_LEVEL 10
+
 #define DEFAULT_COLOR Drivers::Color   {255,70,0}   // orange
 #define ACCENT_COLOR Drivers::Color    {0,255,255}  // cyan
 #define MESSAGE_COLOR Drivers::Color   {255,25,150} // pink
 #define WELL_DONE_COLOR Drivers::Color {100,255,0}  // green
+
+// ============= System configuration =====================
+
+#define ENABLE_BOT_STEPPER true
+#define ENABLE_TOP_STEPPER true
+
+#define ENABLE_NOSE_LEDS true//false//true
+#define ENABLE_BASE_LEDS true//false//true
+
+#define ENABLE_LDR true
+
+#define ENABLE_SOUND true
 
 // ============= Mechanical configuration =================
 
@@ -56,5 +70,8 @@
 #define BUTTON_PIN GPIO_NUM_13
 #define LED_BUT_PIN GPIO_NUM_12
 #define LED_BUT_CHANNEL 0
+
+#define UART_TX GPIO_NUM_17
+#define UART_RX GPIO_NUM_16
 
 #endif // BIRDO_CONFIG_H
