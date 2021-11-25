@@ -11,7 +11,7 @@ namespace Drivers
         const char * TAG = "SOUND";
         const uint16_t BAUDRATE = 9600;
         const uint8_t MAX_ATTEMPTS = 20;
-        const uint8_t MAX_VOLUME = 10;
+        const uint8_t MAX_VOLUME = 30;
     }
 
     BDPlayer::BDPlayer(uint8_t RX, uint8_t TX)

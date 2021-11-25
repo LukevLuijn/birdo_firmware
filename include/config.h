@@ -15,14 +15,12 @@
 #include <Arduino.h>
 #include "BDStepper.h"
 
-// ============= User configuration =======================
+// ============= User configuration ======================= touch
 
 #define STATE_INIT_TIMER 5000
 #define STATE_IDLE_TIMER 30000
 #define STATE_MESSAGE_TIMER 5000
 #define STATE_WELL_DONE_TIMER 5000
-
-#define STATE_CHECK_PRESS_TIMER 400
 
 #define BASE_BREATHE_TIME 1000
 #define BASE_LONG_PRESS_TIME 1000
@@ -34,19 +32,21 @@
 #define MESSAGE_COLOR Drivers::Color   {255,25,150} // pink
 #define WELL_DONE_COLOR Drivers::Color {100,255,0}  // green
 
-// ============= System configuration =====================
+// ============= System configuration ===================== don't touch
 
 #define ENABLE_BOT_STEPPER true
 #define ENABLE_TOP_STEPPER true
 
-#define ENABLE_NOSE_LEDS true//false//true
-#define ENABLE_BASE_LEDS true//false//true
+#define ENABLE_NOSE_LEDS true
+#define ENABLE_BASE_LEDS true
 
 #define ENABLE_LDR true
 
 #define ENABLE_SOUND true
 
-// ============= Mechanical configuration =================
+#define STATE_CHECK_PRESS_TIMER 400
+
+// ============= Mechanical configuration ================= // don't touch
 
 #define MICROSTEPS Drivers::Microsteps_e::STEP_1_2 // defining the microsteps
 #define REDUCTION 1                              // reduction is zero (with 0, you cannot calculate)
