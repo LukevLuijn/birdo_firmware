@@ -27,8 +27,13 @@ namespace Drivers
     {
         setCurrentPosition(0);
         uint16_t stepsPerRev = STEPS_PER_REVOLUTION * MULTIPLIERS[static_cast<uint8_t>(m_microsteps)] * m_reduction;
-        setMaxSpeed(stepsPerRev);
-        setAcceleration(1000);
+
+        float multiplier = 5.0f;
+        float speed = stepsPerRev * multiplier;
+        float accel = (1000.0f * (static_cast<float>(stepsPerRev) / 400.0f)) /* * multiplier */;
+
+        setMaxSpeed(speed);
+        setAcceleration(accel);
         disableOutputs();
     }
     void BDStepper::Loop()

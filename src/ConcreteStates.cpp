@@ -550,7 +550,7 @@ namespace Application
         m_app.nose.SetColor(WELL_DONE_COLOR);
         m_app.nose.TurnOn();
 
-        uint16_t min = 180, max = 360;
+        uint16_t min = 0, max = 135;
         int32_t position = Utils::Misc::Random(min, max);
         m_app.stepperBot.MoveDegrees(position);
         m_app.stepperTop.MoveDegrees(-position);
@@ -561,10 +561,10 @@ namespace Application
     {
         if (m_app.stepperBot.distanceToGo() == 0 && m_app.stepperTop.distanceToGo() == 0)
         {
-            uint16_t min = 180, max = 360;
-            int32_t position = (m_goBack) ? 0 : Utils::Misc::Random(min, max);
-            m_app.stepperBot.MoveTo((m_goBack) ? -position : position);
-            m_app.stepperTop.MoveTo((m_goBack) ? position : -position);
+            uint16_t min = 0, max = 135;
+            int32_t position = Utils::Misc::Random(min, max);
+            m_app.stepperBot.MoveDegrees((m_goBack) ? -position : position);
+            m_app.stepperTop.MoveDegrees((m_goBack) ? position : -position);
             m_goBack = !m_goBack;
         }
         if (Utils::Misc::Timer(m_timer, STATE_WELL_DONE_TIMER))

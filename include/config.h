@@ -48,8 +48,8 @@
 
 // ============= Mechanical configuration ================= // don't touch
 
-#define MICROSTEPS Drivers::Microsteps_e::STEP_1_2 // defining the microsteps
-#define REDUCTION 1                              // reduction is zero (with 0, you cannot calculate)
+#define MICROSTEPS Drivers::Microsteps_e::STEP_1_128 // defining the microsteps
+#define REDUCTION 4                              // reduction is zero (with 0, you cannot calculate)
 
 #define MOT_0_STEP_PIN GPIO_NUM_4 // stepper driver [1] step pin
 #define MOT_0_DIR_PIN GPIO_NUM_5  // stepper driver [1] direction pin
