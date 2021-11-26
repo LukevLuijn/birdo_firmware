@@ -22,7 +22,7 @@
 
 namespace Drivers
 {
-    enum class PixelState_e : uint8_t;
+    enum class PixelState_e : uint8_t; //class; name ;type 
     
     struct Color
     {

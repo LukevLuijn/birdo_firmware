@@ -18,7 +18,7 @@
 // ============= User configuration ======================= touch
 
 #define STATE_INIT_TIMER 5000
-#define STATE_IDLE_TIMER 30000
+#define STATE_IDLE_TIMER 5000
 #define STATE_MESSAGE_TIMER 5000
 #define STATE_WELL_DONE_TIMER 5000
 
@@ -48,8 +48,8 @@
 
 // ============= Mechanical configuration ================= // don't touch
 
-#define MICROSTEPS Drivers::Microsteps_e::STEP_1_128 // defining the microsteps
-#define REDUCTION 4                              // reduction is zero (with 0, you cannot calculate)
+#define MICROSTEPS Drivers::Microsteps_e::STEP_1_32 // defining the microsteps
+#define REDUCTION 4                                 // reduction is zero (with 0, you cannot calculate)
 
 #define MOT_0_STEP_PIN GPIO_NUM_4 // stepper driver [1] step pin
 #define MOT_0_DIR_PIN GPIO_NUM_5  // stepper driver [1] direction pin

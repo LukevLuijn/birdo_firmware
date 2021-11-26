@@ -139,6 +139,7 @@ namespace Application
 
     private:
         uint32_t m_timer;
+        float m_previousSpeed;
     };
     class WellDone : public BaseState
     {

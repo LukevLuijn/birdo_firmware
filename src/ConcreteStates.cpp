@@ -16,7 +16,7 @@ namespace Application
 {
     namespace
     {
-        const char *TAG = "STATE"; // kleine git change
+        const char *TAG = "STATE";
     }
 
     // ================ Init =================================== //
@@ -53,7 +53,7 @@ namespace Application
         m_app.nose.TurnOff();
         m_app.pixels.TurnOff();
 
-        uint16_t rotation = 270;
+        uint16_t rotation = 90;
         m_app.stepperBot.MoveDegrees(rotation);
         m_app.stepperTop.MoveDegrees(-rotation);
 
@@ -203,8 +203,8 @@ namespace Application
 
         auto DoMovement = [&]()
         {
-            uint16_t min = 180, max = 360;
-            int32_t position = Utils::Misc::Random(min, max);
+            uint16_t min = 45, max = 90;
+            float position = Utils::Misc::Random(min, max);
             m_app.stepperBot.MoveDegrees(position);
             m_app.stepperTop.MoveDegrees(-position);
         };
@@ -489,7 +489,12 @@ namespace Application
         m_app.nose.SetBreatheTime(BASE_BREATHE_TIME);
         m_app.nose.Breathe();
 
-        uint16_t rotation = 135;
+        m_previousSpeed = m_app.stepperBot.maxSpeed();
+
+        m_app.stepperBot.setMaxSpeed(m_previousSpeed / 4);
+        m_app.stepperTop.setMaxSpeed(m_previousSpeed / 4);
+
+        float rotation = 90;
         m_app.stepperBot.MoveDegrees(rotation);
         m_app.stepperTop.MoveDegrees(-rotation);
 
@@ -514,6 +519,9 @@ namespace Application
     {
         m_app.nose.SetColor(DEFAULT_COLOR);
         m_app.nose.TurnOn();
+
+        m_app.stepperBot.setMaxSpeed(m_previousSpeed);
+        m_app.stepperTop.setMaxSpeed(m_previousSpeed);
 
         m_app.stepperBot.MoveTo(0);
         m_app.stepperTop.MoveTo(0);
@@ -550,10 +558,9 @@ namespace Application
         m_app.nose.SetColor(WELL_DONE_COLOR);
         m_app.nose.TurnOn();
 
-        uint16_t min = 0, max = 135;
-        int32_t position = Utils::Misc::Random(min, max);
-        m_app.stepperBot.MoveDegrees(position);
-        m_app.stepperTop.MoveDegrees(-position);
+        float rotation = 45;
+        m_app.stepperBot.MoveDegrees(rotation);
+        m_app.stepperTop.MoveDegrees(-rotation);
 
         m_app.Sound(Drivers::Sounds_e::NIGHTINGALE_WELL_DONE);
     }
@@ -561,12 +568,10 @@ namespace Application
     {
         if (m_app.stepperBot.distanceToGo() == 0 && m_app.stepperTop.distanceToGo() == 0)
         {
-            uint16_t min = 0, max = 135;
-            int32_t position = Utils::Misc::Random(min, max);
-            m_app.stepperBot.MoveDegrees((m_goBack) ? -position : position);
-            m_app.stepperTop.MoveDegrees((m_goBack) ? position : -position);
-            m_goBack = !m_goBack;
+            m_app.stepperBot.MoveTo(-m_app.stepperBot.currentPosition());
+            m_app.stepperTop.MoveTo(-m_app.stepperTop.currentPosition());
         }
+
         if (Utils::Misc::Timer(m_timer, STATE_WELL_DONE_TIMER))
         {
             StateMachine::Event event(static_cast<uint16_t>(Events_e::TIMER_EXPIRED),

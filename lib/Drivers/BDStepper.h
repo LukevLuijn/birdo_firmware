@@ -31,7 +31,7 @@ namespace Drivers
         void Start();
         void Loop();
         void MoveDegrees(float degrees);
-        void MoveTo(uint32_t position);
+        void MoveTo(float position);
 
     private:
         const uint8_t MULTIPLIERS [8] = {1, 2, 4, 8, 16, 32, 64, 128};
