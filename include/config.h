@@ -18,7 +18,7 @@
 // ============= User configuration ======================= touch
 
 #define STATE_INIT_TIMER 5000
-#define STATE_IDLE_TIMER 5000
+#define STATE_IDLE_TIMER 30000
 #define STATE_MESSAGE_TIMER 5000
 #define STATE_WELL_DONE_TIMER 5000
 
