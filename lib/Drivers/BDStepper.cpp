@@ -34,20 +34,16 @@ namespace Drivers
         setCurrentPosition(0);
         uint16_t stepsPerRev = STEPS_PER_REVOLUTION * MULTIPLIERS[static_cast<uint8_t>(m_microsteps)] * m_reduction;
 
-        float multiplier = 1.0f;
-        float speed = stepsPerRev * multiplier;
+        float speedMultiplier = 1.0f;
+        float speed = stepsPerRev * speedMultiplier;
 
-        multiplier = 0.50f;
-        float accel = (1000.0f * (static_cast<float>(stepsPerRev) / 400.0f)) * multiplier;
+        float accelMultiplier = 0.50f;
+        float accel = (1000.0f * (static_cast<float>(stepsPerRev) / 400.0f)) * accelMultiplier;
 
         setMaxSpeed(speed);
         setAcceleration(accel);
         disableOutputs();
-
-        Utils::Misc::print(TAG, "speed = ");
-        Utils::Misc::print(speed);
-        Utils::Misc::print(", accel = ");
-        Utils::Misc::println(accel);
+        // enableOutputs();
     }
     void BDStepper::Loop()
     {

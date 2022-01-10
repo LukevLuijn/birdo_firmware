@@ -15,22 +15,23 @@
 #include <Arduino.h>
 #include "BDStepper.h"
 
-// ============= User configuration ======================= touch
+// ============= User configuration ======================= may touch
 
-#define STATE_INIT_TIMER 5000
-#define STATE_IDLE_TIMER 30000
-#define STATE_MESSAGE_TIMER 5000
-#define STATE_WELL_DONE_TIMER 5000
+#define STATE_INIT_TIMER 5000       // in Miliseconds
+#define STATE_IDLE_TIMER 30000      // in Miliseconds
+#define STATE_MESSAGE_TIMER 5000    // in Miliseconds
+#define STATE_WELL_DONE_TIMER 5000  // in Miliseconds
 
-#define BASE_BREATHE_TIME 1000
-#define BASE_LONG_PRESS_TIME 1000
+#define BASE_BREATHE_TIME 1000      // in Miliseconds
+#define BASE_LONG_PRESS_TIME 1000   // in Miliseconds
 
-#define VOLUME_LEVEL 10
+#define VOLUME_LEVEL 10     // max 30
+#define LDR_OFFSET 1.0f     // [0..1]
 
-#define DEFAULT_COLOR Drivers::Color   {255,70,0}   // orange
-#define ACCENT_COLOR Drivers::Color    {0,255,255}  // cyan
-#define MESSAGE_COLOR Drivers::Color   {255,25,150} // pink
-#define WELL_DONE_COLOR Drivers::Color {100,255,0}  // green
+#define DEFAULT_COLOR Drivers::Color   {255, 70,  0} // orange
+#define ACCENT_COLOR Drivers::Color    {  0,255,255} // cyan
+#define MESSAGE_COLOR Drivers::Color   {255, 25,150} // pink
+#define WELL_DONE_COLOR Drivers::Color {100,255,  0} // green
 
 // ============= System configuration ===================== don't touch
 

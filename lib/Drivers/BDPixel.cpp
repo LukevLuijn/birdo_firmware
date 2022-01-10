@@ -128,7 +128,7 @@ namespace Drivers
             TurnOn(false);
         }
     }
-    Color BDPixel::GetColor() const 
+    Color BDPixel::GetColor() const
     {
         return m_currentColor;
     }
@@ -151,9 +151,12 @@ namespace Drivers
     void BDPixel::WriteMaxBrightness()
     {
         uint16_t reading = BDLDR::GetReading();
+        // uint16_t LDRCeil = static_cast<uint16_t>((std::pow(2, 12) - 1) * 0.2f);
 
-        m_maxBrightness = map(reading, 0, 4095, 0, 255);
+        m_maxBrightness = map(reading, 0, 4095, 100, 255);
         m_maxBrightness = std::max(static_cast<uint8_t>(1), m_maxBrightness);
+
+        m_maxBrightness = 255;
 
         if (m_currentState == PixelState_e::STATE_BREATHE)
         {

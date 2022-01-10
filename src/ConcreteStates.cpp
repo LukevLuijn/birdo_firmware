@@ -221,15 +221,12 @@ namespace Application
         switch (static_cast<Options>(choice))
         {
         case SOUND:
-            Utils::Misc::println(TAG, "transision idle: sound");
             DoSound();
             break;
         case MOVEMENT:
-            Utils::Misc::println(TAG, "transision idle: movement");
             DoMovement();
             break;
         case BOTH:
-            Utils::Misc::println(TAG, "transision idle: both");
             DoSound();
             DoMovement();
             break;
@@ -558,7 +555,7 @@ namespace Application
         m_app.nose.SetColor(WELL_DONE_COLOR);
         m_app.nose.TurnOn();
 
-        float rotation = 45;
+        float rotation = 60;
         m_app.stepperBot.MoveDegrees(rotation);
         m_app.stepperTop.MoveDegrees(-rotation);
 

@@ -12,6 +12,6 @@
 
 <img src="../schematic/export/motors.svg" alt="drawing" width="1000"/>
 
-## LEDs
+## LED's
 
 <img src="../schematic/export/LEDs.svg" alt="drawing" width="1000"/>

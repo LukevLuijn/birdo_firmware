@@ -157,6 +157,7 @@ namespace Application
     private:
         uint32_t m_timer;
         bool m_goBack;
+        float m_previousSpeed;
     };
     enum class Events_e : uint8_t
     {
